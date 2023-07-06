@@ -18,10 +18,10 @@
     <title>Hangman</title>
   </head>
   <body>
-    <header><img src="assets/images/logo.png" alt="Logo" />Hangman</header>
+    <header><img src="assets/images/logo.png" alt="logo" />Hangman</header>
     <main>
-      <div id="welcome-sec">
-        <section>
+      <section id="welcomeSec">
+        <div>
           <h1>Welcome to Hangman!</h1>
           <p>
             In this classic word-guessing game, your mission is to uncover a
@@ -44,43 +44,58 @@
             screen. These settings allow you to tailor the game according to
             your preferences.
           </p>
-        </section>
-        <section>
-            <h1>Settings</h1>
-            <label for="name">Username:</label>
-            <input type="text" id="name" required>
-            <br>
-            <input type="radio" id="easy" name="difficulty" required>
-            <label for="easy">Easy</label>
-            <br>
-            <input type="radio" id="medium" name="difficulty">
-            <label for="medium">Medium</label>
-            <br>
-            <input type="radio" name="difficulty" id="hard">
-            <label for="hard">Hard</label>
-            <br>
-            <input type="radio" name="difficulty" id="random">
-            <label for="random">Random</label>
-            <br>
-            <label for="timer">Timer</label>
-            <input type="checkbox" id="timer">
-            <br>
-            <label for="word-count"></label>
-            <input type="number" id="word-count" min="1" max="1000">
-            <br>
-            <button id="play">Play</button>
-        </section>
-      </div>
-      <div id="game-sec">
-        <section>
-          <span> </span>
-          <span> </span>
-        </section>
-        <section>
+        </div>
+        <div>
+          <h1>Settings</h1>
+          <label for="name">Username:</label>
+          <input type="text" id="name" required />
+          <br />
+          <input type="radio" id="easy" name="difficulty" required />
+          <label for="easy">Easy</label>
+          <br />
+          <input type="radio" id="medium" name="difficulty" />
+          <label for="medium">Medium</label>
+          <br />
+          <input type="radio" name="difficulty" id="hard" />
+          <label for="hard">Hard</label>
+          <br />
+          <input type="radio" name="difficulty" id="random" />
+          <label for="random">Random</label>
+          <br />
+          <label for="timer">Timer</label>
+          <input type="checkbox" id="timer" />
+          <br />
+          <label for="wordCount"></label>
+          <input type="number" id="wordCount" min="1" max="1000" />
+          <br />
+          <button class="play">Play</button>
+        </div>
+      </section>
+      <section id="gameSec">
+        <div id="gallows">
+          <span id="head"></span>
+          <span id="torso"></span>
+          <span id="lArm"> </span>
+          <span id="rArm"> </span>
+          <span id="lLeg"> </span>
+          <span id="rLeg"> </span>
+        </div>
+        <div id="gameFeedback">
+            <h1 id="diffDisplay"></h1>
+        </div>
+        <!-- User input section -->
+        <div>
+            <div id="vKeyboard">
+
+            </div>
           <input type="text" />
-        </section>
-      </div>
-      <div id="postgame-sec"></div>
+        </div>
+      </section>
+      <section id="postgameSec">
+        <h1 id="postgameM"></h1>
+        <button id="cSettings">Change Settings</button>
+        <button class="play">Play Again</button>
+      </section>
     </main>
     <footer></footer>
   </body>
