@@ -18,7 +18,7 @@
     <title>Hangman</title>
   </head>
   <body>
-    <header><img src="assets/images/logo.png" alt="logo" />Hangman</header>
+    <header><img src="assets/images/logo.png" alt="logo" /><span>Hangman</span></header>
     <main>
       <section id="welcomeSec">
         <div>
@@ -45,33 +45,37 @@
             your preferences.
           </p>
         </div>
-        <div>
+        <div id="settings">
           <h1>Settings</h1>
           <label for="name">Username:</label>
+          <br>
           <input type="text" id="name" required />
           <br />
-          <input type="radio" id="easy" name="difficulty" required />
-          <label for="easy">Easy</label>
-          <br />
-          <input type="radio" id="medium" name="difficulty" />
-          <label for="medium">Medium</label>
-          <br />
-          <input type="radio" name="difficulty" id="hard" />
-          <label for="hard">Hard</label>
-          <br />
-          <input type="radio" name="difficulty" id="random" />
-          <label for="random">Random</label>
-          <br />
-          <label for="timer">Timer</label>
-          <input type="checkbox" id="timer" />
-          <br />
-          <label for="wordCount"></label>
-          <input type="number" id="wordCount" min="1" max="1000" />
-          <br />
+          <div id="diffSelector">
+            <h1>Select Difficulty:</h1>
+            <input type="radio" id="easy" name="difficulty" required />
+            <label for="easy">Easy</label>
+            <br />
+            <input type="radio" id="medium" name="difficulty" />
+            <label for="medium">Medium</label>
+            <br />
+            <input type="radio" name="difficulty" id="hard" />
+            <label for="hard">Hard</label>
+            <br />
+            <input type="radio" name="difficulty" id="random" />
+            <label for="random">Random</label>
+          </div>
+          <div id="additionalOptions">
+            <label for="timer">Timer</label>
+            <input type="checkbox" id="timer" />
+            <br>
+            <label for="wordCount">Consecutive games</label>
+            <input type="number" id="wordCount" min="1" max="1000" />
+          </div>
           <button class="play">Play</button>
         </div>
       </section>
-      <section id="gameSec">
+      <section id="gameSec" class="hidden">
         <div id="gallows">
           <span id="head"></span>
           <span id="torso"></span>
@@ -91,7 +95,7 @@
           <input type="text" />
         </div>
       </section>
-      <section id="postgameSec">
+      <section id="postgameSec" class="hidden">
         <h1 id="postgameM"></h1>
         <button id="cSettings">Change Settings</button>
         <button class="play">Play Again</button>
