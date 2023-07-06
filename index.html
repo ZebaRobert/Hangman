@@ -18,15 +18,60 @@
     <title>Hangman</title>
   </head>
   <body>
-    <header>
-      <img src="" alt="Logo" />
-    </header>
+    <header><img src="assets/images/logo.png" alt="Logo" />Hangman</header>
     <main>
-      <div>
-        <span> </span>
-        <span> </span>
+      <div id="welcome-sec">
+        <section>
+          <h1>Welcome to Hangman!</h1>
+          <p>
+            In this classic word-guessing game, your mission is to uncover a
+            secret word by guessing one letter at a time. Each correct guess
+            reveals all occurrences of the letter in the word, while each
+            incorrect guess brings you one step closer to being hanged.
+            <br /><br />
+            To play, simply choose a letter from the English alphabet and input
+            it into the game. If the letter is part of the secret word, it will
+            be revealed in its correct position(s). However, if the letter is
+            not in the word, a part of the hangman will be drawn.<br /><br />
+            Your goal is to guess all the letters in the word before the entire
+            hangman is drawn. Be careful, as too many incorrect guesses will
+            lead to your defeat! <br /><br />Remember, every word you encounter
+            is chosen randomly, so each game presents a new challenge. Test your
+            vocabulary, sharpen your guessing skills, and have fun playing
+            Hangman! <br /><br />
+            Before diving into the game, take a moment to customize your
+            experience by adjusting the settings on the right side of the
+            screen. These settings allow you to tailor the game according to
+            your preferences.
+          </p>
+        </section>
+        <section>
+            <h1>Settings</h1>
+            <label for="name">Username:</label>
+            <input type="text" id="name" required>
+            <br>
+            <input type="radio" id="easy" name="difficulty" required>
+            <label for="easy">Easy</label>
+            <br>
+            <input type="radio" id="medium" name="difficulty">
+            <label for="medium">Medium</label>
+            <br>
+            <input type="radio" name="difficulty" id="hard">
+            <label for="hard">Hard</label>
+            <br>
+            <input type="radio" name="difficulty" id="random">
+            <label for="random">Random</label>
+            <br>
+            <label for="timer">Timer</label>
+            <input type="checkbox" id="timer">
+            <br>
+            <label for="word-count"></label>
+            <input type="number" id="word-count" min="1" max="1000">
+            <br>
+            <button id="play">Play</button>
+        </section>
       </div>
-      <div>
+      <div id="game-sec">
         <section>
           <span> </span>
           <span> </span>
@@ -35,7 +80,7 @@
           <input type="text" />
         </section>
       </div>
-      <div></div>
+      <div id="postgame-sec"></div>
     </main>
     <footer></footer>
   </body>

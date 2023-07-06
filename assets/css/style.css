@@ -3,3 +3,24 @@
     margin: 0 auto;
     box-sizing: border-box;
 }
+
+:root{
+    --blue1:#08415C;
+    --blue2:#7BB2D9;
+    --green:#034748;
+    --orange:#E38030;
+}
+
+header {
+    height: 7vh;
+}
+body{
+    height: 100vh;
+}
+main{
+    height: 86vh;
+    width: 80%;
+}
+footer{
+    height: 7vh;
+}
