@@ -1,7 +1,7 @@
 
 # Hangman
 
-The Hangman Website Game is a web-site built to provide an interactive and enjoyable gaming experience for users. It offers the classic game of Hangman, where players attempt to guess a word by suggesting letters, with limited chances before the hangman is fully drawn.
+The Hangman Website Game is built to provide an interactive and enjoyable gaming experience for users. It offers the classic game of Hangman, where players attempt to guess a word by suggesting letters, with limited chances before the hangman is fully drawn.
 
 
 ## Contents
@@ -125,6 +125,8 @@ The website comprises three sections, which appear and disappear as required.
 Html, Css and JavaScript were used to create the Hangman Website Game.
 
 ### Frameworks, Libraries & Programs Used
+
+Readme.so - Help with creating README.md and TESTING.md
 
 Figma - Used to create wireframes.
 
