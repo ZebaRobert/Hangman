@@ -20,7 +20,7 @@
   <body>
     <header><img src="assets/images/logo.png" alt="logo" /><span>Hangman</span></header>
     <main>
-      <section id="welcomeSec">
+      <section id="welcomeSec" class="hidden">
         <div>
           <h1>Welcome to Hangman!</h1>
           <p>
@@ -66,6 +66,7 @@
             <label for="random">Random</label>
           </div>
           <div id="additionalOptions">
+            <i class="fa-regular fa-stopwatch"></i>
             <label for="timer">Timer</label>
             <input type="checkbox" id="timer" />
             <br>
@@ -75,20 +76,16 @@
           <button class="play">Play</button>
         </div>
       </section>
-      <section id="gameSec" class="hidden">
-        <div id="gallows">
-          <span id="head"></span>
-          <span id="torso"></span>
-          <span id="lArm"> </span>
-          <span id="rArm"> </span>
-          <span id="lLeg"> </span>
-          <span id="rLeg"> </span>
-        </div>
-        <div id="gameFeedback">
-            <h1 id="diffDisplay"></h1>
+      <section id="gameSec" class="">
+        <div id="visualFeedback">
+          <div id="gallows">
+          </div>
+          <div id="gameInfo">
+              <h1 id="diffDisplay"></h1>
+          </div>
         </div>
         <!-- User input section -->
-        <div>
+        <div id="userInput">
             <div id="vKeyboard">
 
             </div>
