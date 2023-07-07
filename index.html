@@ -18,7 +18,9 @@
     <title>Hangman</title>
   </head>
   <body>
-    <header><img src="assets/images/logo.png" alt="logo" /><span>Hangman</span></header>
+    <header>
+      <img src="assets/images/logo.png" alt="logo" /><span>Hangman</span>
+    </header>
     <main>
       <section id="welcomeSec" class="hidden">
         <div>
@@ -48,7 +50,7 @@
         <div id="settings">
           <h1>Settings</h1>
           <label for="name">Username:</label>
-          <br>
+          <br />
           <input type="text" id="name" required />
           <br />
           <div id="diffSelector">
@@ -69,31 +71,51 @@
             <i class="fa-regular fa-stopwatch"></i>
             <label for="timer">Timer</label>
             <input type="checkbox" id="timer" />
-            <br>
+            <br />
             <label for="wordCount">Consecutive games</label>
             <input type="number" id="wordCount" min="1" max="1000" />
           </div>
           <button class="play">Play</button>
         </div>
       </section>
-      <section id="gameSec" class="">
+      <section id="gameSec" class="hidden">
         <div id="visualFeedback">
           <div id="gallows">
+            <div id="stickman"></div>
+            <div id="mysteryWord">
+              <span class="letterBox"></span>
+              <span class="letterBox"></span>
+              <span class="letterBox"></span>
+              <span class="letterBox"></span>
+              <span class="letterBox"></span>
+              <span class="letterBox"></span>
+            </div>
           </div>
           <div id="gameInfo">
-              <h1 id="diffDisplay"></h1>
+            <div id="timer">
+              <span id ="clock"><span id="needle"></span></span>
+              <h2 id="time">0 sec</h2>
+            </div>
+            <span class="guessCount">Correct Guesses:0</span>
+            <span class="guessCount">Incorrect Guesses:0</span>
+            <h1 id="diffDisplay">Hard</h1>
           </div>
         </div>
         <!-- User input section -->
         <div id="userInput">
-            <div id="vKeyboard">
-
-            </div>
-          <input type="text" />
+          <div id="vKeyboard"></div>
+          <div id="manualInput">
+            <input type="text" />
+            <br />
+            <button>Check letter</button>
+          </div>
         </div>
       </section>
-      <section id="postgameSec" class="hidden">
-        <h1 id="postgameM"></h1>
+      <section id="postgameSec" class="">
+        <h1 class="postgameM">Game Over!</h1>
+        <p class="postgameM">I am sure you will do better next time! Try again</p>
+        <span class="guessCount">Correct Guesses:0</span>
+        <span class="guessCount">Incorrect Guesses:0</span>
         <button id="cSettings">Change Settings</button>
         <button class="play">Play Again</button>
       </section>

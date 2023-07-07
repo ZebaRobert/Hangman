@@ -115,12 +115,77 @@ input[type="number"] {
   flex: 0 0 100%;
   height: 65%;
 }
+/* Gallows, stickman and mysteri word */
 #gallows {
   flex: 0 0 60%;
+  display: flex;
+  align-items: end;
+  margin: 0;
 }
+#stickman{
+  flex:0 1 35%;
+  height: 100%;
+  background: url(../images/gallows.jpg) center center no-repeat;
+}
+#mysteryWord{
+  flex: 1 0 65%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+}
+.letterBox {
+  height: 50px ;
+  width: 50px;
+  margin: 5px;
+}
+/* Game information,timer */
 #gameInfo {
   flex: 0 0 40%;
+  position: relative;
 }
+#timer {
+  height: 70%;
+}
+#clock {
+  width: 31%;
+  height: 53% ;
+  border-radius: 50%;
+  position: relative;
+  left: 35%;
+  top: 10%;
+  display: inline-block;
+}
+#needle {
+  display: inline-block;
+  width: 45%;
+  position: relative;
+  left: 49%;
+  top: 49%;
+  border: solid black 1%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+}
+#time{
+  position: relative;
+  top:12%;
+  text-align: center;
+  font-size: 2em;
+}
+#diffDisplay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 2em;
+  text-align: center;
+}
+.guessCount {
+  display: inline-block;
+  width: 40%;
+  text-align: center;
+  margin-left: 7%;
+  font-size: 2em;
+}
+/* User input */
 #userInput {
   height: 35%;
   flex: 0 0 100%;
@@ -129,11 +194,47 @@ input[type="number"] {
 #vKeyboard {
   flex: 0 0 80%;
 }
-#userInput input[type=text]{
-  width: 10%;
-  height: 30%;
-  align-self: center;
+#manualInput input[type=text]{
+  position:relative ;
+  width: 50%;
+  height: 50%;
   text-align: center;
+  font-size: 3em;
+  top: 5%;
+  left: 25%;
+  border-radius: 30%;
+}
+#manualInput button{
+  border-radius: 10px;
+  height: 20%;
+  width: 70%;
+  position: relative;
+  text-align: center;
+  font-size: 1em;
+  top: 10%;
+  left: 15%;
+}
+/* Post game message */
+#postgameSec {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  border-radius: 30px;
+  padding: 30px;
+}
+.postgameM {
+  flex:0 0 100% ;
+  font-size: 3em;
+  text-align: center;
+  padding: 15px;
+}
+#postgameSec button {
+  margin-top: 50px;
+  width: 30%;
+  font-size: 1.5em;
+  border-radius: 20px;
+  padding: 15px;
 }
 /* Footer */
 footer {
