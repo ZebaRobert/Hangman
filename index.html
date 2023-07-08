@@ -22,7 +22,7 @@
       <img src="assets/images/logo.png" alt="logo" /><span>Hangman</span>
     </header>
     <main>
-      <section id="welcomeSec" class="">
+      <section id="welcomeSec" class="hidden">
         <div>
           <h1>Welcome to Hangman!</h1>
           <p>
@@ -56,16 +56,16 @@
             <br />
             <div id="diffSelector">
               <h1>Select Difficulty:</h1>
-              <input type="radio" name="difficulty" class="diffSelection" value="easy" required />
+              <input type="radio" name="difficulty" class="diffSelection" value="easy" id="easy" required />
               <label for="easy">Easy</label>
               <br />
-              <input type="radio" name="difficulty" class="diffSelection" value="medium"/>
+              <input type="radio" name="difficulty" class="diffSelection" value="medium" id="medium"/>
               <label for="medium">Medium</label>
               <br />
-              <input type="radio" name="difficulty" class="diffSelection" value="hard"/>
+              <input type="radio" name="difficulty" class="diffSelection" value="hard" id="hard"/>
               <label for="hard">Hard</label>
               <br />
-              <input type="radio" name="difficulty" class="diffSelection" value="random"/>
+              <input type="radio" name="difficulty" class="diffSelection" value="random" id="random" checked/>
               <label for="random">Random</label>
             </div>
             <div id="additionalOptions">
@@ -74,13 +74,13 @@
               <input type="checkbox" id="timerCheckbox" />
               <br />
               <label for="wordCount">Consecutive games</label>
-              <input type="number" id="wordCount" min="1" max="1000" />
+              <input type="number" id="wordCount" min="1" max="1000" value="0" />
             </div>
             <button class="play" type="submit">Play</button>
           </form>
         </div>
       </section>
-      <section id="gameSec" class="hidden">
+      <section id="gameSec" class="">
         <div id="visualFeedback">
           <div id="gallows">
             <div id="stickman"></div>
