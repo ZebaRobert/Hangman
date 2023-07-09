@@ -138,3 +138,17 @@ function drawKeyboard() {
     vKeyboard[2].appendChild(letterBox);
   }
 }
+
+/**
+ * Draws empty boxes in the mystery word div accordingly to the number of letter in the random word
+ */
+function drawMysteryWord(mysteryWord) {
+  let wordDiv = document.getElementById("mysteryWord");
+  for (let i = 0; i < mysteryWord.length; i++) {
+    let letterBox = document.createElement("span");
+    letterBox.textContent = "";
+    letterBox.setAttribute("class", "letterBox");
+    letterBox.setAttribute("id", `${i}`);
+    wordDiv.appendChild(letterBox);
+  }
+}
