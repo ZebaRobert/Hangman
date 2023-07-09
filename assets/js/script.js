@@ -140,7 +140,7 @@ function drawKeyboard() {
 }
 
 /**
- * Draws empty boxes in the mystery word div accordingly to the number of letter in the random word
+ * Draws empty boxes in the mystery word div according to the number of letter in the random word
  */
 function drawMysteryWord(mysteryWord) {
   let wordDiv = document.getElementById("mysteryWord");
@@ -150,5 +150,47 @@ function drawMysteryWord(mysteryWord) {
     letterBox.setAttribute("class", "letterBox");
     letterBox.setAttribute("id", `${i}`);
     wordDiv.appendChild(letterBox);
+  }
+}
+/**
+ * Starts the game loop
+ * 
+ */
+function runGame(playerObj) {
+  /*  */
+  let diffDisplay = document.getElementById("diffDisplay");
+  let time = document.getElementById("time");
+  switch (playerObj.difficulty) {
+    case "easy":
+      diffDisplay.innerHTML = "Easy";
+      diffDisplay.style.color = "green";
+      diffDisplay.textContent = "Easy";
+      if (playerObj.timer) {
+        time.textContent = "30 sec";
+      }
+      break;
+    case "medium":
+      diffDisplay.innerHTML = "Medium";
+      diffDisplay.style.color = "yellow";
+      diffDisplay.textContent = "Medium";
+      if (playerObj.timer) {
+        time.textContent = "20 sec";
+      }
+      break;
+    case "hard":
+      diffDisplay.innerHTML = "Hard";
+      diffDisplay.style.color = "red";
+      diffDisplay.textContent = "Hard";
+      if (playerObj.timer) {
+        time.textContent = "15 sec";
+      }
+      break;
+    case "random":
+      diffDisplay.innerHTML = "Medium";
+      diffDisplay.style.color = "yellow";
+      if (playerObj.timer) {
+        time.textContent = "20 sec";
+      }
+      break;
   }
 }
