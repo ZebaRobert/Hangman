@@ -46,9 +46,60 @@ let playButton = document.getElementsByClassName("play")[0];
 playButton.addEventListener("click", function (event){
   event.preventDefault();
   drawKeyboard();
+  let mysteryWord = generateWord();
+  mysteryWord = mysteryWord.toUpperCase();
+  let mWordArray = mysteryWord.split("");
+  drawMysteryWord(mWordArray);
   displaySection();
-  runGame(player);
 });
+
+let playAgain = document.getElementsByClassName("play")[1];
+let changeSettings = document.getElementById("cSettings");
+let parent = document.getElementById("postgameM");
+let h1Child = parent.getElementsByTagName("h1");
+let pChild = parent.getElementsByTagName("p");
+let answerForm = document.getElementById("answerForm");
+let submitButton = document.getElementById("submitAnswer");
+let keyboardSubmit = document.getElementsByClassName("keys");
+let diffDisplay = document.getElementById("diffDisplay");
+let time = document.getElementById("time");
+
+playAgain.addEventListener("click", displaySection);
+changeSettings.addEventListener("click", displaySection);
+answerForm.elements["answer"].addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    submitButton.click();
+  }
+});
+
+/**
+ * Inputs the clicked virtual key value to inpute filed 
+ * @param {*} event click
+ */
+function handleClick(event) {
+  event.preventDefault();
+  let pressedKey = this.textContent;
+  answerForm.elements["answer"].value = pressedKey;
+}
+
+/**
+ * applies events liseners to virtual keyboard keys
+ */
+function addEventListeners() {
+  for (let i = 0; i < keyboardSubmit.length; i++) {
+    keyboardSubmit[i].addEventListener("click", handleClick);
+  }
+}
+
+/**
+ * removes previosly applied event listeners
+ */
+function removeEventListeners() {
+  for (let i = 0; i < keyboardSubmit.length; i++) {
+    keyboardSubmit[i].removeEventListener("click", handleClick);
+  }
+}
 
 /**
  * Determines which section is currently visible and switches to the next
@@ -73,16 +124,16 @@ function displaySection() {
       sections[2].setAttribute("class", "");
       break;
     case "postgameSec":
-      let playAgain = document.getElementsByClassName("play")[1];
-      let changeSettings = document.getElementById("cSettings");
-      playAgain.addEventListener("click", function (event) {
+      if (playAgain == event.target){
+        drawKeyboard();
         currentSec.setAttribute("class", "hidden");
         sections[1].setAttribute("class", "");
-      });
-      changeSettings.addEventListener("click", function (event) {
+      } else if (changeSettings == event.target){
         currentSec.setAttribute("class", "hidden");
         sections[0].setAttribute("class", "");
-      });
+      }else {
+        console.log("Somethings wrong");
+      };
       break;
     default:
       alert("Something went wrong");
@@ -115,6 +166,7 @@ function generateWord() {
  * Takes letters from arrays and creates buttons that represent keyboard keys 
  */
 function drawKeyboard() {
+  removeEventListeners();
   let vKeyboard = document.getElementsByClassName("keysRow");
   let firstRow = ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p"];
   let secundRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -137,14 +189,15 @@ function drawKeyboard() {
     letterBox.textContent = thirdRow[i];
     vKeyboard[2].appendChild(letterBox);
   }
+  addEventListeners();
 }
 
 /**
  * Draws empty boxes in the mystery word div according to the number of letter in the random word
  */
-function drawMysteryWord(mysteryWord) {
+function drawMysteryWord(mWordArray) {
   let wordDiv = document.getElementById("mysteryWord");
-  for (let i = 0; i < mysteryWord.length; i++) {
+  for (let i = 0; i < mWordArray.length; i++) {
     let letterBox = document.createElement("span");
     letterBox.textContent = "";
     letterBox.setAttribute("class", "letterBox");
@@ -157,9 +210,14 @@ function drawMysteryWord(mysteryWord) {
  * 
  */
 function runGame(playerObj) {
+
+  /* game variables */
   const maxGuess = 5;
-  let diffDisplay = document.getElementById("diffDisplay");
-  let time = document.getElementById("time");
+  var guessCount = 0;
+  var wrongGuess = 0;
+  var usedLetters = [];
+  var correctGuess = [];
+  
   switch (playerObj.difficulty) {
     case "easy":
       diffDisplay.innerHTML = "Easy";
@@ -193,81 +251,7 @@ function runGame(playerObj) {
       }
       break;
   }
-  do {
-    var guessCount = 0;
-    var wrongGuess = 0;
-    var usedLetters = [];
-    var correctGuess = [];
-    var mysteryWord = generateWord();
-    mysteryWord.split("");
-    mysteryWord.toUpperCase();
-    var parent = document.getElementById("postgameM");
-    var h1Child = parent.getElementsByTagName("h1");
-    var pChild = parent.getElementsByTagName("p");
-    let answerForm = document.getElementById("answerForm");
-    let submitButton = document.getElementById("submitAnswer");
-    let keyboardSubmit = document.getElementsByClassName("keys");
-
-    submitButton.addEventListener("submit", function (event) {
-      event.preventDefault();
-      let answer = answerForm.elements["answer"].value;
-      let answerASCII = answer.charCodeAt(0);
-      if (answerASCII >= 65 && answerASCII <= 90) {
-        checkAnwser(
-          answer,
-          guessCount,
-          wrongGuess,
-          correctGuess,
-          usedLetters,
-          mysteryWord
-        );
-      } else if (answerASCII >= 97 && answerASCII <= 122) {
-        let upperCase = answer.toUpperCase();
-        answerASCII = upperCase.charCodeAt(0);
-        checkAnwser(
-          answer,
-          guessCount,
-          wrongGuess,
-          correctGuess,
-          usedLetters,
-          mysteryWord
-        );
-      } else {
-        alert(
-          "Sorry ${playerObj.name}, but ${answer} is not a valid option. Please try again using letters form the English alphabet"
-        );
-      }
-    });
-    answerForm.elements["answer"].addEventListener(
-      "keypress",
-      function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          submitButton.click();
-        }
-      }
-    );
-    for (let i = 0; i < keyboardSubmit.length;i++){
-      keyboardSubmit[i].addEventListener("click", function (event) {
-        event.preventDefault();
-        let pressedKey = this.textContent;
-        answerForm.elements["answer"].value = pressedKey;
-      });
-    }
-    
-  } while (
-    wrongGuess !== maxGuess ||
-    correctGuess.length === mysteryWord.length
-  );
-  if (wrongGuess === maxGuess){
-    h1Child.textContent = "Game Over!";
-    pChild,textContent = "I am sure you will do better next time! Try again.";
-    displaySection();
-  }else{
-    h1Child.textContent = "Congratulations!!You won!";
-    pChild.textContent = "Would you like to play another round and continue your winning streak?"
-    displaySection();
-  }
+  
 }
 
 /**
@@ -297,8 +281,8 @@ function checkAnwser(
       return;
     }
   }
-  for (let i = 0; i < mysteryWord.length; i++) {
-    if (answer === mysteryWord[i]) {
+  for (let i = 0; i < mWordArray.length; i++) {
+    if (answer === mWordArray[i]) {
       let letterBox = document.getElementById(`${i}`);
       letterBox.textContent = answer;
       usedLetters.push(answer);
