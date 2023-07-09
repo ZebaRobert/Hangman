@@ -43,19 +43,26 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 let playButton = document.getElementsByClassName("play")[0];
-playButton.addEventListener("click", displaySection);
+playButton.addEventListener("click", function (event){
+  event.preventDefault();
+  drawKeyboard();
+  displaySection();
+  runGame(player);
+});
 
+/**
+ * Determines which section is currently visible and switches to the next
+ */
 function displaySection() {
   let sections = document.getElementsByTagName("section");
-  let currentSec;
-  
+
   for (let i = 0; i < sections.length; i++) {
     if (sections[i].className === "") {
-      currentSec = sections[i];
+      var currentSec = sections[i];
       break;
     }
   }
-  
+
   switch (currentSec.id) {
     case "welcomeSec":
       currentSec.setAttribute("class", "hidden");
@@ -68,26 +75,66 @@ function displaySection() {
     case "postgameSec":
       let playAgain = document.getElementsByClassName("play")[1];
       let changeSettings = document.getElementById("cSettings");
-      playAgain.addEventListener("click", function (event){
+      playAgain.addEventListener("click", function (event) {
         currentSec.setAttribute("class", "hidden");
         sections[1].setAttribute("class", "");
       });
-      changeSettings.addEventListener("click", function(event){
+      changeSettings.addEventListener("click", function (event) {
         currentSec.setAttribute("class", "hidden");
         sections[0].setAttribute("class", "");
       });
       break;
     default:
+      alert("Something went wrong");
       break;
   }
 }
 /**
- * Generate a random word using math.random()
+ * Generate a random word using math.random() and an array of words
  * @returns random Word form the word array
  */
-function generateWord(){
-  let wordArray = ["bacon","bamboo","farm","fashion","individual","indoor","repeat","replace","typical", "ugly"];
+function generateWord() {
+  let wordArray = [
+    "bacon",
+    "bamboo",
+    "farm",
+    "fashion",
+    "individual",
+    "indoor",
+    "repeat",
+    "replace",
+    "typical",
+    "ugly",
+  ];
   let randomNumber = Math.floor(Math.random() * 10);
   let randomWord = wordArray[randomNumber];
   return randomWord;
+}
+
+/**
+ * Takes letters from arrays and creates buttons that represent keyboard keys 
+ */
+function drawKeyboard() {
+  let vKeyboard = document.getElementsByClassName("keysRow");
+  let firstRow = ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p"];
+  let secundRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
+  let thirdRow = ["y", "x", "c", "v", "b", "n", "m"];
+  for (let i = 0; i < firstRow.length; i++) {
+    let letterBox = document.createElement("span");
+    letterBox.setAttribute("class", "keys");
+    letterBox.textContent = firstRow[i];
+    vKeyboard[0].appendChild(letterBox);
+  }
+  for (let i = 0; i < secundRow.length; i++) {
+    let letterBox = document.createElement("span");
+    letterBox.setAttribute("class", "keys");
+    letterBox.textContent = secundRow[i];
+    vKeyboard[1].appendChild(letterBox);
+  }
+  for (let i = 0; i < thirdRow.length; i++) {
+    let letterBox = document.createElement("span");
+    letterBox.setAttribute("class", "keys");
+    letterBox.textContent = thirdRow[i];
+    vKeyboard[2].appendChild(letterBox);
+  }
 }

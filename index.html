@@ -22,7 +22,7 @@
       <img src="assets/images/logo.png" alt="logo" /><span>Hangman</span>
     </header>
     <main>
-      <section id="welcomeSec" class="hidden">
+      <section id="welcomeSec" class="">
         <div>
           <h1>Welcome to Hangman!</h1>
           <p>
@@ -80,17 +80,11 @@
           </form>
         </div>
       </section>
-      <section id="gameSec" class="">
+      <section id="gameSec" class="hidden">
         <div id="visualFeedback">
           <div id="gallows">
             <div id="stickman"></div>
             <div id="mysteryWord">
-              <span class="letterBox"></span>
-              <span class="letterBox"></span>
-              <span class="letterBox"></span>
-              <span class="letterBox"></span>
-              <span class="letterBox"></span>
-              <span class="letterBox"></span>
             </div>
           </div>
           <div id="gameInfo">
@@ -105,17 +99,25 @@
         </div>
         <!-- User input section -->
         <div id="userInput">
-          <div id="vKeyboard"></div>
+          <div id="vKeyboard">
+            <div class="keysRow"></div>
+            <div class="keysRow"></div>
+            <div class="keysRow"></div>
+          </div>
           <div id="manualInput">
-            <input type="text" />
-            <br />
-            <button>Check letter</button>
+            <form id="answerForm">
+              <input type="text" required name="answer"/>
+              <br />
+              <button type="submit" id="submitAnswer">Check letter</button>
+            </form>
           </div>
         </div>
       </section>
       <section id="postgameSec" class="hidden">
-        <h1 class="postgameM">Game Over!</h1>
-        <p class="postgameM">I am sure you will do better next time! Try again</p>
+        <div id="postgameM">
+          <h1></h1>
+          <p></p>
+        </div>
         <span class="guessCount">Correct Guesses:0</span>
         <span class="guessCount">Incorrect Guesses:0</span>
         <button id="cSettings">Change Settings</button>

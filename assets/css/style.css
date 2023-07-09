@@ -138,8 +138,10 @@ input[type="number"] {
   align-items: center;
 }
 .letterBox {
-  height: 50px ;
-  width: 50px;
+  height: 50% ;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  font-size: 3em;
   margin: 5px;
 }
 /* Game information,timer */
@@ -197,6 +199,25 @@ input[type="number"] {
 }
 #vKeyboard {
   flex: 0 0 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#vKeyboard div{
+  flex: 0 0 100%;
+  height: 32%;
+  display: flex;
+  align-items: start;
+}
+.keys {
+  display: inline-block;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  font-size: 3em;
+  padding: 10px;
+}
+#answerForm{
+  height: 100%;
 }
 #manualInput input[type=text]{
   position:relative ;
@@ -227,11 +248,16 @@ input[type="number"] {
   border-radius: 30px;
   padding: 30px;
 }
-.postgameM {
+#postgameM {
   flex:0 0 100% ;
-  font-size: 3em;
+  font-size: 2em;
   text-align: center;
   padding: 15px;
+}
+#postgameM h1 {
+  font-size: 3em;
+  margin-bottom: 15px;
+  color: red;
 }
 #postgameSec button {
   margin-top: 50px;
