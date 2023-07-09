@@ -269,3 +269,47 @@ function runGame(playerObj) {
     displaySection();
   }
 }
+
+/**
+ * Checks if users guess is correct
+ * @param {string} answer users input 
+ * @param {number} guessCount current guess count
+ * @param {number} wrongGuess current wrong guess count
+ * @param {number} correctGuess current correct guess letters array
+ * @param {array} usedLetters array of used letters
+ * @param {array} mysteryWord array of the mystery word letters
+ * @returns updated used letter array, guess count, wrong guess count and correct guess count 
+ */
+function checkAnwser(
+  answer,
+  guessCount,
+  wrongGuess,
+  correctGuess,
+  usedLetters,
+  mysteryWord
+) {
+  guessCount++;
+  let condition = usedLetters.length;
+
+  for (let i = 0; i <= usedLetters.length; i++) {
+    if (answer === usedLetters[i]) {
+      alert("You have already tried this letter. Please chose another one.");
+      return;
+    }
+  }
+  for (let i = 0; i < mysteryWord.length; i++) {
+    if (answer === mysteryWord[i]) {
+      let letterBox = document.getElementById(`${i}`);
+      letterBox.textContent = answer;
+      usedLetters.push(answer);
+      correctGuess.push(answer);
+      break;
+    }
+  }
+  if (condition !== usedLetters.length) {
+    wrongGuess++;
+    usedLetters.push(answer);
+  }
+  return guessCount, wrongGuess, correctGuess, usedLetters;
+}
+
