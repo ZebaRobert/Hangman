@@ -157,7 +157,7 @@ function drawMysteryWord(mysteryWord) {
  * 
  */
 function runGame(playerObj) {
-  /*  */
+  const maxGuess = 5;
   let diffDisplay = document.getElementById("diffDisplay");
   let time = document.getElementById("time");
   switch (playerObj.difficulty) {
@@ -192,5 +192,80 @@ function runGame(playerObj) {
         time.textContent = "20 sec";
       }
       break;
+  }
+  do {
+    var guessCount = 0;
+    var wrongGuess = 0;
+    var usedLetters = [];
+    var correctGuess = [];
+    var mysteryWord = generateWord();
+    mysteryWord.split("");
+    mysteryWord.toUpperCase();
+    var parent = document.getElementById("postgameM");
+    var h1Child = parent.getElementsByTagName("h1");
+    var pChild = parent.getElementsByTagName("p");
+    let answerForm = document.getElementById("answerForm");
+    let submitButton = document.getElementById("submitAnswer");
+    let keyboardSubmit = document.getElementsByClassName("keys");
+
+    submitButton.addEventListener("submit", function (event) {
+      event.preventDefault();
+      let answer = answerForm.elements["answer"].value;
+      let answerASCII = answer.charCodeAt(0);
+      if (answerASCII >= 65 && answerASCII <= 90) {
+        checkAnwser(
+          answer,
+          guessCount,
+          wrongGuess,
+          correctGuess,
+          usedLetters,
+          mysteryWord
+        );
+      } else if (answerASCII >= 97 && answerASCII <= 122) {
+        let upperCase = answer.toUpperCase();
+        answerASCII = upperCase.charCodeAt(0);
+        checkAnwser(
+          answer,
+          guessCount,
+          wrongGuess,
+          correctGuess,
+          usedLetters,
+          mysteryWord
+        );
+      } else {
+        alert(
+          "Sorry ${playerObj.name}, but ${answer} is not a valid option. Please try again using letters form the English alphabet"
+        );
+      }
+    });
+    answerForm.elements["answer"].addEventListener(
+      "keypress",
+      function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          submitButton.click();
+        }
+      }
+    );
+    for (let i = 0; i < keyboardSubmit.length;i++){
+      keyboardSubmit[i].addEventListener("click", function (event) {
+        event.preventDefault();
+        let pressedKey = this.textContent;
+        answerForm.elements["answer"].value = pressedKey;
+      });
+    }
+    
+  } while (
+    wrongGuess !== maxGuess ||
+    correctGuess.length === mysteryWord.length
+  );
+  if (wrongGuess === maxGuess){
+    h1Child.textContent = "Game Over!";
+    pChild,textContent = "I am sure you will do better next time! Try again.";
+    displaySection();
+  }else{
+    h1Child.textContent = "Congratulations!!You won!";
+    pChild.textContent = "Would you like to play another round and continue your winning streak?"
+    displaySection();
   }
 }
