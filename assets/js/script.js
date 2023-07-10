@@ -181,6 +181,8 @@ function generateWord() {
     switch (playerDiff){
       case "easy":
         if (randomWord.length <= 5){
+          removeMysteryWord();
+          drawMysteryWord(randomWord);
           return randomWord;
         } else {
           randomNumber = Math.floor(Math.random() * 10);
@@ -190,6 +192,8 @@ function generateWord() {
         break; 
       case "medium":
         if (randomWord.length <= 7 && randomWord.length > 5){
+          removeMysteryWord();
+          drawMysteryWord(randomWord);
           return randomWord;
         } else {
           randomNumber = Math.floor(Math.random() * 10);
@@ -199,6 +203,8 @@ function generateWord() {
         break;
       case "hard":
         if (randomWord.length > 7){
+          removeMysteryWord();
+          drawMysteryWord(randomWord);
           return randomWord;
         } else {
           randomNumber = Math.floor(Math.random() * 10);
@@ -257,8 +263,13 @@ function drawMysteryWord(mWordArray) {
     wordDiv.appendChild(letterBox);
   }
 }
+
+function removeMysteryWord(){
+  let wordDiv = document.getElementById("mysteryWord");
+  wordDiv.innerHTML = "";
+}
 /**
- * Starts the game loop
+ * Updates users game interface accordingly to his/hers settings
  * 
  */
 function updateUI(playerObj) {
