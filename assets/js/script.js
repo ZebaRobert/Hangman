@@ -19,45 +19,16 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         }
       },
-      /**
-       * Checks whether or not timer checkbox is checked
-       * @returns true or false
-       */
-      getTimerCheckbox: function () {
-        let timerCheckbox = document.getElementById("timerCheckbox");
-        if (timerCheckbox.checked) {
-          return true;
-        } else {
-          return false;
-        }
-      },
       name: document.getElementById("name").value,
       difficulty: null,
-      timer: null,
       consGames: document.getElementById("wordCount").value,
     };
     player.difficulty = player.getDifficulty();
-    player.timer = player.getTimerCheckbox();
+    });
     return player;
-  });
 });
-
-let playButton = document.getElementsByClassName("play")[0];
-playButton.addEventListener("click", function (event){
-  event.preventDefault();
-  drawKeyboard();
-  let mysteryWord = generateWord();
-  mysteryWord = mysteryWord.toUpperCase();
-  let mWordArray = mysteryWord.split("");
-  drawMysteryWord(mWordArray);
-  displaySection();
-});
-
 let playAgain = document.getElementsByClassName("play")[1];
 let changeSettings = document.getElementById("cSettings");
-let parent = document.getElementById("postgameM");
-let h1Child = parent.getElementsByTagName("h1");
-let pChild = parent.getElementsByTagName("p");
 let answerForm = document.getElementById("answerForm");
 let submitButton = document.getElementById("submitAnswer");
 let keyboardSubmit = document.getElementsByClassName("keys");
@@ -71,6 +42,55 @@ answerForm.elements["answer"].addEventListener("keypress", function (event) {
     event.preventDefault();
     submitButton.click();
   }
+});
+
+let play = document.getElementsByClassName("play")[0];
+play.addEventListener("click", function (event){
+  drawKeyboard();
+  var mysteryWord = generateWord();
+  mysteryWord = mysteryWord.toUpperCase();
+  var mWordArray = mysteryWord.split("");
+  drawMysteryWord(mWordArray);
+  displaySection();
+  updateUI(player);
+})
+
+const maxGuess = 5;
+let guessCount = 0;
+let wrongGuess = 0;
+let usedLetters = [];
+let correctGuess = [];
+
+let checkUserInput = document.getElementById("submitAnswer");
+checkUserInput.addEventListener("click", function(event){
+    event.preventDefault();
+    let answer = answerForm.elements["answer"].value;
+    let answerASCII = answer.charCodeAt(0);
+    if (answerASCII >= 65 && answerASCII <= 90) {
+      checkAnwser(
+        answer,
+        guessCount,
+        wrongGuess,
+        correctGuess,
+        usedLetters,
+        mWordArray
+      );
+    } else if (answerASCII >= 97 && answerASCII <= 122) {
+      let upperCase = answer.toUpperCase();
+      answerASCII = upperCase.charCodeAt(0);
+      checkAnwser(
+        answer,
+        guessCount,
+        wrongGuess,
+        correctGuess,
+        usedLetters,
+        mWordArray
+      );
+    } else {
+      alert(
+        `Sorry ${playerObj.name}, but ${answer} is not a valid option. Please try again using letters from the English alphabet`
+      );
+    }
 });
 
 /**
@@ -93,7 +113,7 @@ function addEventListeners() {
 }
 
 /**
- * removes previosly applied event listeners
+ * removes previosly applied event listeners for virtual keyboard
  */
 function removeEventListeners() {
   for (let i = 0; i < keyboardSubmit.length; i++) {
@@ -209,14 +229,7 @@ function drawMysteryWord(mWordArray) {
  * Starts the game loop
  * 
  */
-function runGame(playerObj) {
-
-  /* game variables */
-  const maxGuess = 5;
-  var guessCount = 0;
-  var wrongGuess = 0;
-  var usedLetters = [];
-  var correctGuess = [];
+function updateUI(playerObj) {
   
   switch (playerObj.difficulty) {
     case "easy":
@@ -270,7 +283,7 @@ function checkAnwser(
   wrongGuess,
   correctGuess,
   usedLetters,
-  mysteryWord
+  mWordArray
 ) {
   guessCount++;
   let condition = usedLetters.length;
