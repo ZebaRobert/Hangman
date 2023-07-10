@@ -11,10 +11,6 @@
     />
     <meta name="author" content="Robert Zeba" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script
-      src="https://kit.fontawesome.com/352abb18d8.js"
-      crossorigin="anonymous"
-    ></script>
     <title>Hangman</title>
   </head>
   <body>
@@ -72,8 +68,7 @@
               <label for="wordCount">Consecutive games</label>
               <input type="number" id="wordCount" min="1" max="1000" value="0" />
             </div>
-            <input type="submit" id="lockSettings" value="Lock Settings">
-            <button class="play">Play</button>
+            <button type="submit" class="play">Play</button>
           </form>
         </div>
       </section>
@@ -96,13 +91,6 @@
             <div class="keysRow"></div>
             <div class="keysRow"></div>
             <div class="keysRow"></div>
-          </div>
-          <div id="manualInput">
-            <form id="answerForm">
-              <input type="text" required name="answer"/>
-              <br />
-              <button id="submitAnswer">Check letter</button>
-            </form>
           </div>
         </div>
       </section>
