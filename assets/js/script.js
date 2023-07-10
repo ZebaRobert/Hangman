@@ -33,7 +33,6 @@ let answerForm = document.getElementById("answerForm");
 let submitButton = document.getElementById("submitAnswer");
 let keyboardSubmit = document.getElementsByClassName("keys");
 let diffDisplay = document.getElementById("diffDisplay");
-let time = document.getElementById("time");
 
 playAgain.addEventListener("click", displaySection);
 changeSettings.addEventListener("click", displaySection);
@@ -47,19 +46,9 @@ answerForm.elements["answer"].addEventListener("keypress", function (event) {
 let play = document.getElementsByClassName("play")[0];
 play.addEventListener("click", function (event){
   drawKeyboard();
-  var mysteryWord = generateWord();
-  mysteryWord = mysteryWord.toUpperCase();
-  var mWordArray = mysteryWord.split("");
-  drawMysteryWord(mWordArray);
   displaySection();
   updateUI(player);
 })
-
-const maxGuess = 5;
-let guessCount = 0;
-let wrongGuess = 0;
-let usedLetters = [];
-let correctGuess = [];
 
 let checkUserInput = document.getElementById("submitAnswer");
 checkUserInput.addEventListener("click", function(event){
@@ -88,10 +77,18 @@ checkUserInput.addEventListener("click", function(event){
       );
     } else {
       alert(
-        `Sorry ${playerObj.name}, but ${answer} is not a valid option. Please try again using letters from the English alphabet`
+        `Sorry ${player.name}, but ${answer} is not a valid option. Please try again using letters from the English alphabet`
       );
     }
 });
+
+const maxGuess = 5;
+let guessCount = 0;
+let wrongGuess = 0;
+let usedLetters = [];
+let correctGuess = [];
+
+
 
 /**
  * Inputs the clicked virtual key value to inpute filed 
@@ -165,6 +162,7 @@ function displaySection() {
  * @returns random Word form the word array
  */
 function generateWord() {
+  let playerDiff = player.difficulty;
   let wordArray = [
     "bacon",
     "bamboo",
@@ -179,7 +177,41 @@ function generateWord() {
   ];
   let randomNumber = Math.floor(Math.random() * 10);
   let randomWord = wordArray[randomNumber];
-  return randomWord;
+  do {
+    switch (playerDiff){
+      case "easy":
+        if (randomWord.length <= 5){
+          return randomWord;
+        } else {
+          randomNumber = Math.floor(Math.random() * 10);
+          randomWord = wordArray[randomNumber];
+          continue;
+        }
+        break; 
+      case "medium":
+        if (randomWord.length <= 7 && randomWord.length > 5){
+          return randomWord;
+        } else {
+          randomNumber = Math.floor(Math.random() * 10);
+          randomWord = wordArray[randomNumber];
+          continue;
+        }
+        break;
+      case "hard":
+        if (randomWord.length > 7){
+          return randomWord;
+        } else {
+          randomNumber = Math.floor(Math.random() * 10);
+          randomWord = wordArray[randomNumber];
+          continue;
+        }
+        break;
+      case "random":
+        return randomWord;
+        break;
+    }
+  } while (true);
+  
 }
 
 /**
@@ -233,35 +265,20 @@ function updateUI(playerObj) {
   
   switch (playerObj.difficulty) {
     case "easy":
-      diffDisplay.innerHTML = "Easy";
       diffDisplay.style.color = "green";
       diffDisplay.textContent = "Easy";
-      if (playerObj.timer) {
-        time.textContent = "30 sec";
-      }
       break;
     case "medium":
-      diffDisplay.innerHTML = "Medium";
       diffDisplay.style.color = "yellow";
       diffDisplay.textContent = "Medium";
-      if (playerObj.timer) {
-        time.textContent = "20 sec";
-      }
       break;
     case "hard":
-      diffDisplay.innerHTML = "Hard";
       diffDisplay.style.color = "red";
       diffDisplay.textContent = "Hard";
-      if (playerObj.timer) {
-        time.textContent = "15 sec";
-      }
       break;
     case "random":
       diffDisplay.innerHTML = "Medium";
       diffDisplay.style.color = "yellow";
-      if (playerObj.timer) {
-        time.textContent = "20 sec";
-      }
       break;
   }
   
