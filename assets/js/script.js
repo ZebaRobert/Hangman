@@ -3,7 +3,7 @@ const maxWrongGuess = 5;
 let wrongGuess = 0;
 let usedLetters = [];
 let correctGuess = [];
-let mWordArray = null;
+var mWordArray = null;
 let win = 0;
 let lose = 0;
 let gameCount = 0;
@@ -48,6 +48,17 @@ let virtualKeyboard = document.getElementsByClassName("keys");
 let diffDisplay = document.getElementById("diffDisplay");
 let h1Element = document.querySelector("#postgameM h1");
 let pElement = document.querySelector("#postgameM p");
+const userName = document.getElementById("name");
+const consecutiveGames = document.getElementById("wordCount");
+let resultCount = document.getElementsByClassName("guessCount");
+
+userName.addEventListener("input", function (event) {
+  this.value = this.value.replace(/[^a-zA-Z]/g, "");
+});
+
+consecutiveGames.addEventListener("input", function (event) {
+  this.value = this.value.replace(/[^0-9]/g, "");
+});
 
 playAgain.addEventListener("click", function (event) {
   removeKeyboard();
@@ -139,7 +150,7 @@ function generateWord() {
   let randomNumber = Math.floor(Math.random() * 10);
   let randomWord = wordArray[randomNumber];
   randomWord = randomWord.toUpperCase();
-  let mWordArray = randomWord.split("");
+  mWordArray = randomWord.split("");
   do {
     switch (playerDiff) {
       case "easy":
@@ -195,9 +206,9 @@ function generateWord() {
 function drawKeyboard() {
   removeEventListeners();
   let vKeyboard = document.getElementsByClassName("keysRow");
-  let firstRow = ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p"];
-  let secundRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-  let thirdRow = ["y", "x", "c", "v", "b", "n", "m"];
+  let firstRow = ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P"];
+  let secundRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+  let thirdRow = ["Y", "X", "C", "V", "B", "N", "M"];
   for (let i = 0; i < firstRow.length; i++) {
     let letterBox = document.createElement("span");
     letterBox.setAttribute("class", "keys");
@@ -223,6 +234,7 @@ function drawKeyboard() {
  * Draws empty boxes in the mystery word div according to the number of letter in the random word
  */
 function drawMysteryWord(mWordArray) {
+  updateUI(player);
   let wordDiv = document.getElementById("mysteryWord");
   for (let i = 0; i < mWordArray.length; i++) {
     let letterBox = document.createElement("span");
@@ -268,8 +280,16 @@ function updateUI(playerObj) {
       diffDisplay.textContent = "Hard";
       break;
     case "random":
-      diffDisplay.innerHTML = "Medium";
-      diffDisplay.style.color = "yellow";
+      if (mWordArray.length <= 5) {
+        diffDisplay.style.color = "green";
+        diffDisplay.textContent = "Easy";
+      } else if (mWordArray.length <= 7 && mWordArray.length > 5) {
+        diffDisplay.style.color = "yellow";
+        diffDisplay.textContent = "Medium";
+      } else {
+        diffDisplay.style.color = "red";
+        diffDisplay.textContent = "Hard";
+      }
       break;
   }
 }
@@ -303,30 +323,36 @@ function checkAnswer(event) {
     usedLetters.push(answer);
     wrongGuess++;
   }
-  console.log(correctGuess);
-  console.log(usedLetters);
-  console.log(wrongGuess);
   winLoseConditions();
-
   return;
 }
 /**
  * Updates post game messages appropriately
  */
 function postGameResults(winCon) {
-  if (winCon) {
-    h1Element.textContent = "Congratulations!!You won!";
+  if (winCon === true) {
+    h1Element.textContent = `Congratulations ${player.name}!!You won!`;
     pElement.textContent =
       "Would you like to play another round and continue your winning streak?";
     displaySection();
-  } else {
-    h1Element.textContent = "Game Over!";
-    pElement.textContent = "I am sure you will do better next time! Try again.";
+  } else if(winCon === "even"){
+    h1Element.textContent = "It´s a tie!!";
+    pElement.textContent = `Not bad ${player.name}, but I know you can do better. Give it another go!`;
+    displaySection();
+  }else {
+    h1Element.textContent = "You Lost!";
+    pElement.textContent = `Sorry ${player.name}, I am sure you will do better next time! Try again!`;
     displaySection();
   }
 }
-
+/**
+ * Determines whether or not a player has won and transitions to post game section
+ */
 function winLoseConditions() {
+  resultCount[0].innerHTML = win.toString();
+  resultCount[1].innerHTML = lose.toString();
+  resultCount[2].innerHTML = win.toString();
+  resultCount[3].innerHTML = lose.toString();
   switch (true) {
     case gameCount > 0:
       if (wrongGuess === maxWrongGuess) {
@@ -336,13 +362,13 @@ function winLoseConditions() {
         usedLetters = [];
         correctGuess = [];
         mWordArray = generateWord();
-      } else if (correctGuess.length === mWordArray.length){
+      } else if (correctGuess.length === mWordArray.length) {
         win++;
         gameCount--;
         wrongGuess = 0;
         usedLetters = [];
         correctGuess = [];
-        setTimeout(function(){
+        setTimeout(function () {
           mWordArray = generateWord();
         }, 500);
       }
@@ -350,28 +376,28 @@ function winLoseConditions() {
     case gameCount === 0:
       if (wrongGuess === maxWrongGuess) {
         lose++;
-        wrongGuess = 0;
-        usedLetters = [];
-        correctGuess = [];
-      } else if (correctGuess.length === mWordArray.length){
+      } else if (correctGuess.length === mWordArray.length) {
         win++;
-        wrongGuess = 0;
-        console.log(gameCount);
-        usedLetters = [];
-        correctGuess = [];
       }
+      wrongGuess = 0;
+      usedLetters = [];
+      correctGuess = [];
       gameCount = gameCountCopy;
       let winCon = true;
       if (win > lose) {
         postGameResults(winCon);
+      }else if(win === lose){
+        winCon = "even";
+        postGameResults(winCon); 
       } else {
         winCon = false;
         postGameResults(winCon);
       }
+      win = 0;
+      lose = 0;
       break;
     default:
       console.log("something went wrong");
       break;
   }
 }
-

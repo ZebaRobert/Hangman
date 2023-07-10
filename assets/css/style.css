@@ -146,34 +146,6 @@ input[type="number"] {
   flex: 0 0 40%;
   position: relative;
 }
-#timer {
-  height: 70%;
-}
-#clock {
-  width: 31%;
-  height: 53% ;
-  border-radius: 50%;
-  position: relative;
-  left: 35%;
-  top: 10%;
-  display: inline-block;
-}
-#needle {
-  display: inline-block;
-  width: 45%;
-  position: relative;
-  left: 49%;
-  top: 49%;
-  border: solid black 1%;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-}
-#time{
-  position: relative;
-  top:12%;
-  text-align: center;
-  font-size: 2em;
-}
 #diffDisplay {
   position: absolute;
   top: 20%;
@@ -186,7 +158,7 @@ input[type="number"] {
   width: 40%;
   text-align: center;
   margin-left: 7%;
-  font-size: 2em;
+  font-size: 5em;
 }
 /* User input */
 #userInput {
