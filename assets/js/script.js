@@ -1,10 +1,13 @@
 var player = {};
-const maxGuess = 5;
-let oneLess = document.getElementById("wordCount").value - 1;
+const maxWrongGuess = 5;
 let wrongGuess = 0;
 let usedLetters = [];
 let correctGuess = [];
 let mWordArray = null;
+let win = 0;
+let lose = 0;
+let gameCount = 0;
+let gameCountCopy = 0;
 
 window.addEventListener("DOMContentLoaded", function () {
   let playerForm = document.getElementById("playerSettings");
@@ -30,6 +33,8 @@ window.addEventListener("DOMContentLoaded", function () {
     };
     player.difficulty = player.getDifficulty();
     mWordArray = generateWord();
+    gameCount = player.consGames;
+    gameCountCopy = player.consGames;
     drawKeyboard();
     updateUI(player);
     displaySection();
@@ -45,16 +50,22 @@ let h1Element = document.querySelector("#postgameM h1");
 let pElement = document.querySelector("#postgameM p");
 
 playAgain.addEventListener("click", function (event) {
+  removeKeyboard();
+  removeMysteryWord();
+  generateWord();
   displaySection();
 });
-changeSettings.addEventListener("click", displaySection);
+changeSettings.addEventListener("click", function (event) {
+  removeKeyboard();
+  displaySection();
+});
 
 /**
  * applies events liseners to virtual keyboard keys
  */
 function addEventListeners() {
   for (let i = 0; i < virtualKeyboard.length; i++) {
-    virtualKeyboard[i].addEventListener("click", checkAnwser);
+    virtualKeyboard[i].addEventListener("click", checkAnswer);
   }
 }
 
@@ -63,7 +74,7 @@ function addEventListeners() {
  */
 function removeEventListeners() {
   for (let i = 0; i < virtualKeyboard.length; i++) {
-    virtualKeyboard[i].removeEventListener("click", checkAnwser);
+    virtualKeyboard[i].removeEventListener("click", checkAnswer);
   }
 }
 
@@ -109,7 +120,7 @@ function displaySection() {
 /**
  * Generate a random word using math.random() and an array of words
  * if the word meets criteria for the player difficulty call drawMysteryWord()
- * @returns random Word form the word array
+ * @returns random array of a random word from word array
  */
 function generateWord() {
   let playerDiff = player.difficulty;
@@ -230,6 +241,15 @@ function removeMysteryWord() {
   wordDiv.innerHTML = "";
 }
 /**
+ * Removes previosly drawn keyboard when user want to play again
+ */
+function removeKeyboard() {
+  let row = document.getElementsByClassName("keysRow");
+  for (let i = 0; i < row.length; ++i) {
+    row[i].innerHTML = "";
+  }
+}
+/**
  * Updates users game interface accordingly to his/hers settings
  *
  */
@@ -255,42 +275,103 @@ function updateUI(playerObj) {
 }
 
 /**
- * Checks if users guess is correct
- * @returns updated used letter array, guess count, wrong guess count and correct guess count
+ * Checks if users guess is correct and fills corresponding letter box if the guess is correct
  */
-function checkAnwser(event) {
+function checkAnswer(event) {
   let answer = this.textContent;
   answer = answer.toUpperCase();
 
   for (let i = 0; i < usedLetters.length; i++) {
     if (answer === usedLetters[i]) {
-      alert("You have already tried this letter. Please chose another one.");
+      alert("You have already tried this letter. Please choose another one.");
       return;
     }
   }
+
+  let correct = false;
+
   for (let i = 0; i < mWordArray.length; i++) {
     if (answer === mWordArray[i]) {
       let letterBox = document.getElementById(`${i}`);
       letterBox.textContent = answer;
       correctGuess.push(answer);
-    } else if (usedLetters.indexOf(answer) == -1){
-      usedLetters.push(answer);
-      wrongGuess++;
+      correct = true;
     }
   }
+
+  if (!correct) {
+    usedLetters.push(answer);
+    wrongGuess++;
+  }
+  console.log(correctGuess);
+  console.log(usedLetters);
+  console.log(wrongGuess);
+  winLoseConditions();
+
   return;
 }
-
-function postGameResults() {
-  if (wrongGuess === maxGuess) {
-    h1Child.textContent = "Game Over!";
-    pChild,
-      (textContent = "I am sure you will do better next time! Try again.");
-    displaySection();
-  } else {
+/**
+ * Updates post game messages appropriately
+ */
+function postGameResults(winCon) {
+  if (winCon) {
     h1Element.textContent = "Congratulations!!You won!";
     pElement.textContent =
       "Would you like to play another round and continue your winning streak?";
     displaySection();
+  } else {
+    h1Element.textContent = "Game Over!";
+    pElement.textContent = "I am sure you will do better next time! Try again.";
+    displaySection();
   }
 }
+
+function winLoseConditions() {
+  switch (true) {
+    case gameCount > 0:
+      if (wrongGuess === maxWrongGuess) {
+        gameCount--;
+        lose++;
+        wrongGuess = 0;
+        usedLetters = [];
+        correctGuess = [];
+        mWordArray = generateWord();
+      } else if (correctGuess.length === mWordArray.length){
+        win++;
+        gameCount--;
+        wrongGuess = 0;
+        usedLetters = [];
+        correctGuess = [];
+        setTimeout(function(){
+          mWordArray = generateWord();
+        }, 500);
+      }
+      break;
+    case gameCount === 0:
+      if (wrongGuess === maxWrongGuess) {
+        lose++;
+        wrongGuess = 0;
+        usedLetters = [];
+        correctGuess = [];
+      } else if (correctGuess.length === mWordArray.length){
+        win++;
+        wrongGuess = 0;
+        console.log(gameCount);
+        usedLetters = [];
+        correctGuess = [];
+      }
+      gameCount = gameCountCopy;
+      let winCon = true;
+      if (win > lose) {
+        postGameResults(winCon);
+      } else {
+        winCon = false;
+        postGameResults(winCon);
+      }
+      break;
+    default:
+      console.log("something went wrong");
+      break;
+  }
+}
+
