@@ -2,6 +2,8 @@
 
 The Hangman Website Game is built to provide an interactive and enjoyable gaming experience for users. It offers the classic game of Hangman, where players attempt to guess a word by suggesting letters, with limited chances before the hangman is fully drawn.
 
+![Am I responsive screenshot](./docs/screenshots/responsive.jpg)
+
 ## Contents
 
 - [User Experience](#user-experience)
@@ -53,6 +55,8 @@ The Hangman Website Game is built to provide an interactive and enjoyable gaming
 
 ### Colour Scheme
 
+![Color palette image](./docs/screenshots/palette.png)
+
 - I have used # colour for the sites text.
 
 - I have used # for the sites background.
@@ -65,13 +69,19 @@ The Hangman Website Game is built to provide an interactive and enjoyable gaming
 
 Google Fonts was used for the following fonts:
 
-[.]() is used for headings on the site.
+[Karla](https://fonts.google.com/specimen/Karla?preview.size=41&query=karla) is used for headings on the site.
 
-[.]() is used for the body text on the site.
+[Asap Condensed](https://fonts.google.com/specimen/Asap+Condensed?preview.size=41&query=asap)  is used for the body text on the site.
 
 ## Wireframes
 
 Wireframes were created desktop using figma.
+
+[Welcome Section Wireframe](./docs/screenshots/welcome_section.jpg) 
+
+[Game Section Wireframe](./docs/screenshots/game_section.jpg)
+
+[Post Game Section](./docs/screenshots/postgame_section.jpg)
 
 ## Features
 
@@ -133,29 +143,31 @@ Html, Css and JavaScript were used to create the Hangman Website Game.
 
 ### Frameworks, Libraries & Programs Used
 
-Readme.so - Help with creating README.md and TESTING.md
+[Readme.so](https://readme.so/editor) - Help with creating README.md and TESTING.md
 
-Figma - Used to create wireframes.
+[Figma](https://www.figma.com) - Used to create wireframes.
 
 Git - For version control.
 
-Github - To save and store the files for the website.
+[Github](https://github.com/) - To save and store the files for the website.
 
-Google Fonts - To import the fonts used on the website.
+[Google Fonts](https://fonts.google.com/?preview.size=41) - To import the fonts used on the website.
 
-Font Awesome - For the iconography on the website.
+[Symbl](https://symbl.cc/en/) - For the iconography on the website.
 
 Google Dev Tools - To troubleshoot and test features, solve issues with responsiveness and styling.
 
-Gimp - To rescale some of the images and to make a logo
-
-Am I Responsive? - To show the website image on a range of devices.
+[Am I Responsive?](https://ui.dev/amiresponsive) - To show the website image on a range of devices.
 
 Prettier extension for VS-Code - To format the code
 
 No libraries were used and all the code was written by me.
 
-### Websites used for research purposes
+### Websites used for research purposes to help with the project
+
+[W3schools](https://www.w3schools.com/)
+[CssTricks](https://css-tricks.com/)
+[MDN Web Docs](https://developer.mozilla.org/en-US/)
 
 ## Deployment
 
@@ -163,23 +175,35 @@ Github Pages was used to deploy the live website.
 
 ## Testing
 
-A detailed description of testing all of the features can be found in [TESTING.md]() file
+A detailed description of testing all of the features can be found in [TESTING.md](./TESTING.md) file
 
 ### W3C validator
 
 The W3C validator was used to validate the HTML and CSS files for the project.
 
-#### Initial Validation
+#### W3C Validation
 
-#### Final Validation
+[HTML Validation](./docs/screenshots/html_validation.png)
+[CSS Validation](./docs/screenshots/css_validation.png)
+
+#### JS Hint
+
+JsHint was used to validate JavaScript file.
+
+[JavaScript Validation](./docs/screenshots/javascript_validation.png)
 
 ### Lighthouse test
+
+[Lighthouse Test](./docs/screenshots/lighthouse.jpeg)
 
 ## Bugs
 
 ### Known Bugs
 
-### Solved Bugs
+Late respones:
+  * Win and Lose counter don't increment right away it takes one additional click on any of the letter buttons for counters to update, same is with the end of the game loop. To display the post game section one additional click is required.
+Infinite number input:
+  * In the number input field, it is possible to put infinite amount of games. It is not capped.
 
 ## Credits
 
@@ -194,4 +218,4 @@ I would like to acknowledge the following people/technologies that helped me alo
 - My family & friends for their feedback on the project.
 - My Code Institute Mentor Graeme Taylor
 - ChatGPT which I used to generate random words for the game.
-  - Chat screenshots:
+  - [Chat link](https://chat.openai.com/share/beb11ce4-b8e7-4c5e-b5b1-b15300c717d3)
