@@ -2086,7 +2086,9 @@ function winLoseConditions() {
       break;
   }
 }
-
+/**
+ * Updates class attributes for div elements
+ */
 function updatePyramide() {
   let blocks = document.getElementsByClassName("pyramide");
   switch (wrongGuess) {

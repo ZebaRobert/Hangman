@@ -204,6 +204,8 @@ Late respones:
   * Win and Lose counter don't increment right away it takes one additional click on any of the letter buttons for counters to update, same is with the end of the game loop. To display the post game section one additional click is required.
 Infinite number input:
   * In the number input field, it is possible to put infinite amount of games. It is not capped.
+Wrong guess not updating properly
+  * Update pyramid function is one step to late  
 
 ## Credits
 
