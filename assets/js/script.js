@@ -1,3 +1,4 @@
+/* Variables used throughout the game loop */
 var player = {};
 const maxWrongGuess = 5;
 let wrongGuess = 0;
@@ -9,6 +10,7 @@ let lose = 0;
 let gameCount = 0;
 let gameCountCopy = 0;
 
+/* Event listener for creating player object and starting the game loop */
 window.addEventListener("DOMContentLoaded", function () {
   let playerForm = document.getElementById("playerSettings");
   playerForm.addEventListener("submit", function (event) {
@@ -41,6 +43,7 @@ window.addEventListener("DOMContentLoaded", function () {
   });
   return player;
 });
+
 
 let playAgain = document.getElementsByClassName("play")[1];
 let changeSettings = document.getElementById("cSettings");

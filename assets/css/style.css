@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* Color variables */
+/* Color variables for consistent design  */
 :root {
   --beige: #ede2d7;
   --gray: #2e2e2e;
@@ -59,6 +59,7 @@ main {
 .hidden {
   display: none !important;
 }
+
 /* Welcome section */
 #welcomeSec {
   margin-top: 50px;
@@ -211,7 +212,6 @@ input[type="number"] {
 #stickman {
   flex: 0 1 35%;
   height: 100%;
-  background: url(../images/gallows.jpg) center center no-repeat;
 }
 #mysteryWord {
   flex: 1 0 65%;
@@ -363,7 +363,7 @@ footer {
   height: 7vh;
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Large devices*/
 @media screen and (max-width: 1200px) {
   main {
     width: 90%;
@@ -392,7 +392,7 @@ footer {
     width: 25%;
   }
 }
-/* Large devices (laptops/desktops, 992px and up) */
+/* Medium devices*/
 @media screen and (max-width: 992px) {
   #settings button {
     padding: 15px;
@@ -416,7 +416,7 @@ footer {
   }
 
 }
-/* Medium devices (landscape tablets, 768px and up) */
+/* Small devices */
 @media screen and (max-width: 768px) {
   main {
     width: 100%;
@@ -497,7 +497,7 @@ footer {
   }
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* Extra small */
 @media screen and (max-width: 600px) {
   main {
     width: 100%;
