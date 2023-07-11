@@ -44,7 +44,6 @@ window.addEventListener("DOMContentLoaded", function () {
   return player;
 });
 
-
 let playAgain = document.getElementsByClassName("play")[1];
 let changeSettings = document.getElementById("cSettings");
 let virtualKeyboard = document.getElementsByClassName("keys");

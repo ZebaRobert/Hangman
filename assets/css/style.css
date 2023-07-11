@@ -367,7 +367,7 @@ footer {
   main {
     width: 90%;
   }
-  #welcomeSec{
+  #welcomeSec {
     width: 90%;
     flex-wrap: wrap;
   }
@@ -377,7 +377,7 @@ footer {
   #settings {
     margin-top: 15px;
   }
-  .keys{
+  .keys {
     height: 80%;
     padding: 5px;
   }
@@ -397,7 +397,7 @@ footer {
     padding: 15px;
     font-size: 2em;
   }
-  .keys{
+  .keys {
     height: 62%;
     padding: 5px;
     font-size: 2em;
@@ -413,7 +413,6 @@ footer {
     flex: 0 0 100%;
     height: 70%;
   }
-
 }
 /* Small devices */
 @media screen and (max-width: 768px) {
