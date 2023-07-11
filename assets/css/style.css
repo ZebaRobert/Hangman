@@ -30,15 +30,20 @@ header span {
 
 /* General */
 body {
-  font-family: 'Asap Condensed',serif,sans-serif;
+  font-family: "Asap Condensed", serif, sans-serif;
   height: 100vh;
   background-color: var(--beige);
   color: antiquewhite;
 }
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: Karla, serif, sans-serif;
 }
-p{
+p {
   border-top: 3px solid black;
   border-radius: 15px;
   padding: 10px;
@@ -64,7 +69,8 @@ main {
   background-color: var(--brown);
   border: 3px solid black;
 }
-#welcomeSec h1, #welcomeSec label{
+#welcomeSec h1,
+#welcomeSec label {
   font-size: 2em;
 }
 #welcomeSec > div {
@@ -101,17 +107,20 @@ input[type="text"] {
   margin: 20px;
   color: antiquewhite;
 }
-input[type="text"]:focus, input[type="number"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus {
   border: 5px solid var(--beige);
   outline: none;
 }
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-ms-clear {
   -webkit-appearance: none;
-  margin: 0;
+  appearance: none;
 }
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
   border: 2px solid black;
   border-radius: 5px;
   width: 30%;
@@ -133,7 +142,7 @@ input[type="number"] {
   color: black;
   font-weight: bold;
 }
-.diffSelection + label:hover{
+.diffSelection + label:hover {
   color: var(--gray);
 }
 .diffSelection + label::before {
@@ -170,7 +179,7 @@ input[type="number"] {
   box-shadow: black;
   color: antiquewhite;
 }
-#settings button:hover{
+#settings button:hover {
   background-color: antiquewhite;
   border: 3px solid black;
   color: var(--gray);
@@ -237,10 +246,10 @@ input[type="number"] {
   border-radius: 15px;
   margin-top: 30px;
 }
-.green{
+.green {
   color: darkgreen;
 }
-.red{
+.red {
   color: crimson;
 }
 .guessCount {
@@ -265,7 +274,7 @@ input[type="number"] {
   flex: 0 0 100%;
   display: flex;
   flex-wrap: wrap;
-  border-top: 3px solid black ;
+  border-top: 3px solid black;
   border-radius: 15px;
   padding-top: 15px;
 }
@@ -286,14 +295,14 @@ input[type="number"] {
   border-radius: 5px;
   margin: 0 10px;
 }
-.keys:hover{
+.keys:hover {
   background-color: antiquewhite;
   color: var(--gray);
 }
 /* Post game message */
 #postgameSec {
   position: relative;
-  margin-top: 50px; 
+  margin-top: 50px;
   width: 80%;
   text-align: center;
   border-radius: 30px;
@@ -336,7 +345,7 @@ input[type="number"] {
   background-color: var(--gray);
   border: 3px solid var(--beige);
 }
-#postgameSec button:hover{
+#postgameSec button:hover {
   border: 3px solid black;
   color: var(--gray);
   background-color: antiquewhite;
@@ -353,3 +362,216 @@ input[type="number"] {
 footer {
   height: 7vh;
 }
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media screen and (max-width: 1200px) {
+  main {
+    width: 90%;
+  }
+  #welcomeSec{
+    width: 90%;
+    flex-wrap: wrap;
+  }
+  #welcomeSec div {
+    flex: 0 0 100%;
+  }
+  #settings {
+    margin-top: 15px;
+  }
+  .keys{
+    height: 80%;
+    padding: 5px;
+  }
+  #diffDisplay {
+    font-size: 2em;
+  }
+  #postgameSec {
+    width: 100%;
+  }
+  #postgameSec span {
+    width: 25%;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (max-width: 992px) {
+  #settings button {
+    padding: 15px;
+    font-size: 2em;
+  }
+  .keys{
+    height: 62%;
+    padding: 5px;
+    font-size: 2em;
+  }
+  .letterBox {
+    height: 45%;
+    font-size: 1.5em;
+  }
+  #gallows {
+    flex-wrap: wrap;
+  }
+  #stickman {
+    flex: 0 0 100%;
+    height: 70%;
+  }
+
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+  main {
+    width: 100%;
+  }
+  #welcomeSec {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #welcomeSec > div {
+    flex: 0 0 100%;
+    font-size: 1em;
+  }
+  #welcomeSec p {
+    font-size: 1.5em;
+  }
+  #settings {
+    margin-top: 15px;
+  }
+  #playerSettings {
+    text-align: left;
+  }
+  #settings button {
+    font-size: 2em;
+    padding: 15px;
+    bottom: 20%;
+  }
+  #gallows {
+    flex-wrap: wrap;
+  }
+  #stickman {
+    flex: 0 0 100%;
+    height: 80%;
+  }
+  #gameInfo {
+    text-align: left;
+    position: relative;
+  }
+  .guessCount {
+    width: 50%;
+    font-size: 1.5em;
+    padding: 15px;
+  }
+  #diffDisplay {
+    position: absolute;
+    width: max-content;
+    left: 0;
+    padding: 10px;
+    font-size: 1.5em;
+  }
+  .letterBox {
+    height: 45%;
+    font-size: 3em;
+  }
+  .keys {
+    height: 65%;
+    margin: 5px;
+    font-size: 2em;
+    padding: 5px;
+  }
+  #postgameSec {
+    width: 100%;
+  }
+  #postgameM {
+    font-size: 1em;
+    padding: 15px;
+    margin-bottom: 50px;
+  }
+  #postgameM p {
+    margin: 0;
+  }
+  #postgameSec button {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+  #postgameSec span {
+    width: 20%;
+    margin: 0 50px 100px 50px;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media screen and (max-width: 600px) {
+  main {
+    width: 100%;
+  }
+  #welcomeSec {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #welcomeSec > div {
+    flex: 0 0 100%;
+    font-size: 1em;
+  }
+  #welcomeSec p {
+    font-size: 1em;
+  }
+  #settings {
+    margin-top: 15px;
+  }
+  #playerSettings {
+    text-align: left;
+  }
+  #settings button {
+    font-size: 2em;
+    padding: 15px;
+  }
+  #gallows {
+    flex-wrap: wrap;
+  }
+  #stickman {
+    flex: 0 0 100%;
+    height: 80%;
+  }
+  #gameInfo {
+    text-align: left;
+    position: relative;
+  }
+  .guessCount {
+    width: 50%;
+    font-size: 1.5em;
+  }
+  #diffDisplay {
+    position: absolute;
+    width: max-content;
+    left: -5px;
+    padding: 10px;
+    font-size: 1.5em;
+  }
+  .letterBox {
+    height: 30%;
+    font-size: 1.5em;
+  }
+  .keys {
+    height: 50%;
+    margin: 3px;
+    font-size: 1.5em;
+    padding: 0;
+  }
+  #postgameSec {
+    width: 100%;
+  }
+  #postgameM {
+    font-size: 1em;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+  #postgameM p {
+    margin: 0;
+  }
+  #postgameSec button {
+    font-size: 1em;
+    padding: 15px;
+  }
+  #postgameSec span {
+    width: 20%;
+    margin: 0 50px 100px 50px;
+  }
+};

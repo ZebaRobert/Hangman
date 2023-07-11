@@ -338,7 +338,7 @@ function postGameResults(winCon) {
       "Would you like to play another round and continue your winning streak?";
     displaySection();
   } else if (winCon === "even") {
-    h1Element.textContent = "It´s a tie!!";
+    h1Element.textContent = "It's a tie!!";
     pElement.textContent = `Not bad ${player.name}, but I know you can do better. Give it another go!`;
     displaySection();
   } else {
