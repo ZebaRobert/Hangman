@@ -211,6 +211,31 @@ input[type="number"] {
 #stickman {
   flex: 0 1 35%;
   height: 100%;
+  text-align: center;
+}
+.pyramide {
+  width: 100%;
+  height: 20%;
+  border: 2px solid black;
+}
+.first{
+  border: 5px solid green;
+}
+.secund{
+  width: 80%;
+  border: 5px solid yellow;
+}
+.third{
+  width: 60%;
+  border: 5px solid orange;
+}
+.forth{
+  width: 40%;
+  border: 5px solid orangered;
+}
+.fifth{
+  width: 20%;
+  border: 5px solid red;
 }
 #mysteryWord {
   flex: 1 0 65%;
