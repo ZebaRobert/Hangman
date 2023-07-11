@@ -299,6 +299,8 @@ function updateUI(playerObj) {
  */
 function checkAnswer(event) {
   let answer = this.textContent;
+  this.style.backgroundColor = "#ede2d7";
+  this.style.color = "#2e2e2e";
   answer = answer.toUpperCase();
 
   for (let i = 0; i < usedLetters.length; i++) {
@@ -335,11 +337,11 @@ function postGameResults(winCon) {
     pElement.textContent =
       "Would you like to play another round and continue your winning streak?";
     displaySection();
-  } else if(winCon === "even"){
+  } else if (winCon === "even") {
     h1Element.textContent = "It´s a tie!!";
     pElement.textContent = `Not bad ${player.name}, but I know you can do better. Give it another go!`;
     displaySection();
-  }else {
+  } else {
     h1Element.textContent = "You Lost!";
     pElement.textContent = `Sorry ${player.name}, I am sure you will do better next time! Try again!`;
     displaySection();
@@ -356,6 +358,10 @@ function winLoseConditions() {
   switch (true) {
     case gameCount > 0:
       if (wrongGuess === maxWrongGuess) {
+        for (let i = 0; i < virtualKeyboard.length; i++) {
+          virtualKeyboard[i].style.backgroundColor = "#2e2e2e";
+          virtualKeyboard[i].style.color = "#ede2d7";
+        }
         gameCount--;
         lose++;
         wrongGuess = 0;
@@ -363,6 +369,15 @@ function winLoseConditions() {
         correctGuess = [];
         mWordArray = generateWord();
       } else if (correctGuess.length === mWordArray.length) {
+        let letterBox = document.getElementsByClassName("letterBox");
+        for (let i = 0; i < letterBox.length; i++) {
+          letterBox[i].style.backgroundColor = "#ede2d7";
+          letterBox[i].style.color = "#2e2e2e";
+        }
+        for (let i = 0; i < virtualKeyboard.length; i++) {
+          virtualKeyboard[i].style.backgroundColor = "#2e2e2e";
+          virtualKeyboard[i].style.color = "#ede2d7";
+        }
         win++;
         gameCount--;
         wrongGuess = 0;
@@ -386,9 +401,9 @@ function winLoseConditions() {
       let winCon = true;
       if (win > lose) {
         postGameResults(winCon);
-      }else if(win === lose){
+      } else if (win === lose) {
         winCon = "even";
-        postGameResults(winCon); 
+        postGameResults(winCon);
       } else {
         winCon = false;
         postGameResults(winCon);

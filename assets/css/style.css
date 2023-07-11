@@ -1,16 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed:wght@300&family=Karla:wght@500&display=swap");
+
 * {
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
-  border: 3px solid black;
 }
 
 /* Color variables */
 :root {
-  --blue1: #08415c;
-  --blue2: #7bb2d9;
-  --green: #034748;
-  --orange: #e38030;
+  --beige: #ede2d7;
+  --gray: #2e2e2e;
+  --brown: #8d7a67;
 }
 
 /* Header */
@@ -18,17 +18,33 @@ header {
   height: 7vh;
   text-align: center;
   font-size: 3em;
+  margin-bottom: 20px;
 }
 header img {
   height: 100%;
 }
 header span {
-  margin-bottom: 5px;
+  color: black;
+  font-weight: 1000;
 }
 
 /* General */
 body {
+  font-family: 'Asap Condensed',serif,sans-serif;
   height: 100vh;
+  background-color: var(--beige);
+  color: antiquewhite;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: Karla, serif, sans-serif;
+}
+p{
+  border-top: 3px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 1.5em;
+  line-height: 28px;
 }
 main {
   position: relative;
@@ -45,9 +61,16 @@ main {
   width: 80%;
   border-radius: 30px;
   padding: 30px;
+  background-color: var(--brown);
+  border: 3px solid black;
+}
+#welcomeSec h1, #welcomeSec label{
+  font-size: 2em;
 }
 #welcomeSec > div {
-  flex: 0 0 50%;
+  border: 3px solid black;
+  border-radius: 15px;
+  flex: 0 0 48%;
   text-align: center;
   padding: 5px;
 }
@@ -60,105 +83,177 @@ label {
 /* Welcome section settings menu */
 #settings {
   position: relative;
+  text-align: left;
+}
+#playerSettings {
+  border-radius: 15px;
+  border-top: 3px solid black;
+  margin-top: 15px;
 }
 input[type="text"] {
   width: 80%;
+  padding: 10px;
   font-size: 1.5em;
   text-align: center;
   border-radius: 15px;
+  border: 2px solid black;
+  background-color: var(--gray);
+  margin: 20px;
+  color: antiquewhite;
+}
+input[type="text"]:focus, input[type="number"]:focus {
+  border: 5px solid var(--beige);
+  outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 input[type="number"] {
+  -moz-appearance: textfield;
+  border: 2px solid black;
+  border-radius: 5px;
   width: 30%;
   font-size: 1.5em;
   text-align: center;
+  background-color: var(--gray);
+  color: antiquewhite;
 }
 #diffSelector {
-  position: absolute;
-  left: 0;
   width: 50%;
   padding: 5px;
   display: inline-block;
   text-align: left;
 }
+.diffSelection {
+  display: none;
+}
+.diffSelection + label {
+  color: black;
+  font-weight: bold;
+}
+.diffSelection + label:hover{
+  color: var(--gray);
+}
+.diffSelection + label::before {
+  content: "\25BB";
+  color: antiquewhite;
+  margin-right: 10px;
+}
+.diffSelection:checked + label::before {
+  content: "\25BA";
+  color: black;
+}
 #diffSelector label {
-  margin-left: 15px;
-  font-size: 1.2em;
+  margin-left: 35px;
+  font-size: 1.5em;
   padding: 10px;
   border: none;
   cursor: pointer;
 }
 #additionalOptions {
   display: inline-block;
-  position: absolute;
-  right: 0;
-  width: 50%;
+  width: 80%;
 }
 #additionalOptions label {
   margin-top: 20px;
 }
 #settings button {
   position: absolute;
-  right: 0%;
+  right: 5%;
   bottom: 5%;
-  font-size: 1.5em;
-  padding: 15px;
+  font-size: 3em;
+  padding: 20px;
   border-radius: 15px;
+  background-color: var(--gray);
+  box-shadow: black;
+  color: antiquewhite;
+}
+#settings button:hover{
+  background-color: antiquewhite;
+  border: 3px solid black;
+  color: var(--gray);
 }
 
 /* Game section */
 #gameSec {
+  background-color: var(--brown);
   display: flex;
   flex-wrap: wrap;
   height: 100%;
+  border: 4px solid black;
+  border-radius: 20px;
 }
 #visualFeedback {
   display: flex;
   flex: 0 0 100%;
-  height: 65%;
+  height: 63%;
+  border-bottom: 3px solid black;
+  border-radius: 15px;
 }
 /* Gallows, stickman and mysteri word */
 #gallows {
-  flex: 0 0 60%;
+  flex: 0 0 80%;
   display: flex;
   align-items: end;
   margin: 0;
 }
-#stickman{
-  flex:0 1 35%;
+#stickman {
+  flex: 0 1 35%;
   height: 100%;
   background: url(../images/gallows.jpg) center center no-repeat;
 }
-#mysteryWord{
+#mysteryWord {
   flex: 1 0 65%;
   height: 25%;
   display: flex;
   align-items: center;
 }
 .letterBox {
-  height: 50% ;
+  height: 50%;
   aspect-ratio: 1 / 1;
   text-align: center;
   font-size: 3em;
   margin: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: var(--gray);
+  color: antiquewhite;
 }
 /* Game information,timer */
 #gameInfo {
-  flex: 0 0 40%;
+  flex: 0 0 20%;
   position: relative;
+  text-align: center;
 }
 #diffDisplay {
-  position: absolute;
-  top: 20%;
-  width: 100%;
+  width: max-content;
+  padding: 15px;
+  border: 2px solid black;
+  background-color: var(--gray);
   font-size: 2em;
   text-align: center;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+.green{
+  color: darkgreen;
+}
+.red{
+  color: crimson;
 }
 .guessCount {
   display: inline-block;
-  width: 40%;
+  width: 50%;
   text-align: center;
-  margin-left: 7%;
+  margin-top: 10%;
+  margin: 10% 5px;
   font-size: 5em;
+  font-weight: 1000;
+  border: 3px solid black;
+  border-radius: 15px;
+  background-color: var(--gray);
 }
 /* User input */
 #userInput {
@@ -167,15 +262,17 @@ input[type="number"] {
   display: flex;
 }
 #vKeyboard {
-  flex: 0 0 80%;
+  flex: 0 0 100%;
   display: flex;
   flex-wrap: wrap;
+  border-top: 3px solid black ;
+  border-radius: 15px;
+  padding-top: 15px;
 }
-#vKeyboard div{
+#vKeyboard div {
   flex: 0 0 100%;
   height: 32%;
-  display: flex;
-  align-items: start;
+  text-align: center;
 }
 .keys {
   display: inline-block;
@@ -183,34 +280,74 @@ input[type="number"] {
   aspect-ratio: 1 / 1;
   text-align: center;
   font-size: 3em;
-  padding: 10px;
+  padding-top: 15px;
+  background-color: var(--gray);
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+.keys:hover{
+  background-color: antiquewhite;
+  color: var(--gray);
 }
 /* Post game message */
 #postgameSec {
-  margin-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
+  position: relative;
+  margin-top: 50px; 
   width: 80%;
+  text-align: center;
   border-radius: 30px;
   padding: 30px;
+  background-color: var(--brown);
+  border: 3px solid black;
 }
 #postgameM {
-  flex:0 0 100% ;
+  flex: 0 0 100%;
   font-size: 2em;
   text-align: center;
   padding: 15px;
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: var(--gray);
 }
 #postgameM h1 {
   font-size: 3em;
   margin-bottom: 15px;
-  color: red;
+  color: antiquewhite;
+}
+#postgameM p {
+  margin: 50px 0;
+  padding: 20px 0;
+  line-height: 50px;
+}
+#postgameSec span {
+  width: 30%;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 #postgameSec button {
-  margin-top: 50px;
+  position: absolute;
+  margin: 30px;
   width: 30%;
   font-size: 1.5em;
   border-radius: 20px;
   padding: 15px;
+  color: antiquewhite;
+  background-color: var(--gray);
+  border: 3px solid var(--beige);
+}
+#postgameSec button:hover{
+  border: 3px solid black;
+  color: var(--gray);
+  background-color: antiquewhite;
+}
+#cSettings {
+  bottom: 0;
+  left: 0;
+}
+#postgameSec .play {
+  right: 0;
+  bottom: 0;
 }
 /* Footer */
 footer {
