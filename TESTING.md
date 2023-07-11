@@ -38,5 +38,3 @@ Each device tested the site using the following browsers:
 |Score display|Display a number of player's correct and incorrect guesses|Played the game|The score is always correct|Pass|
 |Play again button|The game loop would start again with the same settings as before|Played the game|The game is same as it was before the end game screen|Pass|
 |Change settings button|Takes you back to the Welcome screen and lets you reelect the settings|Clicked the button|Takes me back to Welcome screen/section|Pass|
-
-
