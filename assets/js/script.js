@@ -2097,6 +2097,7 @@ function winLoseConditions() {
  */
 function updatePyramide() {
   let blocks = document.getElementsByClassName("pyramide");
+  let image = document.getElementsByClassName("coyotImg")
   switch (wrongGuess) {
     case 0:
       for (let i = 0; i < blocks.length; i++) {
@@ -2104,19 +2105,23 @@ function updatePyramide() {
       }
       break;
     case 1:
-      blocks[4].classList.remove("hidden");
+      blocks[0].classList.remove("hidden");
       break;
     case 2:
-      blocks[3].classList.remove("hidden");
+      blocks[1].classList.remove("hidden");
+      image[0].style.opacity = 0;
       break;
     case 3:
       blocks[2].classList.remove("hidden");
+      image[1].style.opacity = 0;
       break;
     case 4:
-      blocks[1].classList.remove("hidden");
+      blocks[3].classList.remove("hidden");
+      image[2].style.opacity = 0;
       break;
     case 5:
-      blocks[0].classList.remove("hidden");
+      blocks[4].classList.remove("hidden");
+      image[3].style.opacity = 0;
       setTimeout(function (){
         for (let i = 0; i < blocks.length; i++) {
           blocks[i].classList.add("hidden");

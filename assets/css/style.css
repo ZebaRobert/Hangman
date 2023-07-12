@@ -216,26 +216,10 @@ input[type="number"] {
 .pyramide {
   width: 100%;
   height: 20%;
-  border: 2px solid black;
+  text-align: center;
 }
-.first{
-  border: 5px solid green;
-}
-.secund{
-  width: 80%;
-  border: 5px solid yellow;
-}
-.third{
-  width: 60%;
-  border: 5px solid orange;
-}
-.forth{
-  width: 40%;
-  border: 5px solid orangered;
-}
-.fifth{
-  width: 20%;
-  border: 5px solid red;
+.pyramide img {
+  height: 100%;
 }
 #mysteryWord {
   flex: 1 0 65%;
@@ -320,8 +304,8 @@ input[type="number"] {
   margin: 0 10px;
 }
 .keys:hover {
-  background-color: antiquewhite;
-  color: var(--gray);
+  border: 3px solid white;
+  cursor: help;
 }
 /* Post game message */
 #postgameSec {
