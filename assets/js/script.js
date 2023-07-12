@@ -1815,59 +1815,59 @@ function displaySection() {
  * @returns random array of a random word from word array
  */
 function generateWord() {
+  let easyWords = [];
+  let mediumWords = [];
+  let hardWords = [];
+  for (let i = 0; i < wordArray.length; i++) {
+    if (wordArray[i].length <= 5) {
+      easyWords.push(wordArray[i]);
+    } else if (wordArray[i].length <= 7 && wordArray[i].length >= 5) {
+      mediumWords.push(wordArray[i]);
+    } else {
+      hardWords.push(wordArray[i]);
+    }
+  }
   let playerDiff = player.difficulty;
-  let randomNumber = Math.floor(Math.random() * 1677);
-  let randomWord = wordArray[randomNumber];
-  randomWord = randomWord.toUpperCase();
-  mWordArray = randomWord.split("");
-  do {
+  let randomNumber;
+  let randomWord;
     switch (playerDiff) {
       case "easy":
-        if (randomWord.length <= 5) {
-          removeMysteryWord();
-          drawMysteryWord(mWordArray);
-          return mWordArray;
-        } else {
-          randomNumber = Math.floor(Math.random() * 10);
-          randomWord = wordArray[randomNumber];
-          randomWord = randomWord.toUpperCase();
-          mWordArray = randomWord.split("");
-          continue;
-        }
+        removeMysteryWord();
+        randomNumber = Math.floor(Math.random() * easyWords.length);
+        randomWord = easyWords[randomNumber];
+        randomWord = randomWord.toUpperCase();
+        mWordArray = randomWord.split("");
+        drawMysteryWord(mWordArray);
+        return mWordArray;
         break;
       case "medium":
-        if (randomWord.length <= 7 && randomWord.length > 5) {
-          removeMysteryWord();
-          drawMysteryWord(mWordArray);
-          return mWordArray;
-        } else {
-          randomNumber = Math.floor(Math.random() * 10);
-          randomWord = wordArray[randomNumber];
-          randomWord = randomWord.toUpperCase();
-          mWordArray = randomWord.split("");
-          continue;
-        }
+        removeMysteryWord();
+        randomNumber = Math.floor(Math.random() * mediumWords.length);
+        randomWord = mediumWords[randomNumber];
+        randomWord = randomWord.toUpperCase();
+        mWordArray = randomWord.split("");
+        drawMysteryWord(mWordArray);
+        return mWordArray;
         break;
       case "hard":
-        if (randomWord.length > 7) {
-          removeMysteryWord();
-          drawMysteryWord(mWordArray);
-          return mWordArray;
-        } else {
-          randomNumber = Math.floor(Math.random() * 10);
-          randomWord = wordArray[randomNumber];
-          randomWord = randomWord.toUpperCase();
-          mWordArray = randomWord.split("");
-          continue;
-        }
+        removeMysteryWord();
+        randomNumber = Math.floor(Math.random() * hardWords.length);
+        randomWord = hardWords[randomNumber];
+        randomWord = randomWord.toUpperCase();
+        mWordArray = randomWord.split("");
+        drawMysteryWord(mWordArray);
+        return mWordArray;
         break;
       case "random":
         removeMysteryWord();
+        randomNumber = Math.floor(Math.random() * wordArray.length);
+        randomWord = wordArray[randomNumber];
+        randomWord = randomWord.toUpperCase();
+        mWordArray = randomWord.split("");
         drawMysteryWord(mWordArray);
         return mWordArray;
         break;
     }
-  } while (true);
 }
 /**
  * Takes letters from arrays and creates buttons that represent keyboard keys
@@ -2093,10 +2093,10 @@ function updatePyramide() {
   let blocks = document.getElementsByClassName("pyramide");
   switch (wrongGuess) {
     case 0:
-        for (let i = 0;i < blocks.length;i++){
-          blocks[i].classList.add("hidden");
-        }
-        break;
+      for (let i = 0; i < blocks.length; i++) {
+        blocks[i].classList.add("hidden");
+      }
+      break;
     case 1:
       blocks[4].classList.remove("hidden");
       break;
