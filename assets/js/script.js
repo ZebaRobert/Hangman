@@ -1967,11 +1967,11 @@ function updateUI(playerObj) {
  * Checks if users guess is correct and fills corresponding letter box if the guess is correct
  */
 function checkAnswer(event) {
+  updatePyramide();
   let answer = this.textContent;
   this.style.backgroundColor = "#ede2d7";
   this.style.color = "#2e2e2e";
   answer = answer.toUpperCase();
-  updatePyramide();
 
   for (let i = 0; i < usedLetters.length; i++) {
     if (answer === usedLetters[i]) {
@@ -2021,6 +2021,7 @@ function postGameResults(winCon) {
  * Determines whether or not a player has won and transitions to post game section
  */
 function winLoseConditions() {
+  updatePyramide();
   switch (true) {
     case gameCount > 0:
       if (wrongGuess === maxWrongGuess) {
@@ -2084,6 +2085,7 @@ function winLoseConditions() {
       }
       win = 0;
       lose = 0;
+      updatePyramide();
       break;
     default:
       console.log("something went wrong");
@@ -2115,6 +2117,11 @@ function updatePyramide() {
       break;
     case 5:
       blocks[0].classList.remove("hidden");
+      setTimeout(function (){
+        for (let i = 0; i < blocks.length; i++) {
+          blocks[i].classList.add("hidden");
+        }
+      },500)
       break;
     default:
       console.log("something went wrong");
