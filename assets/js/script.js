@@ -2021,10 +2021,6 @@ function postGameResults(winCon) {
  * Determines whether or not a player has won and transitions to post game section
  */
 function winLoseConditions() {
-  resultCount[0].innerHTML = win.toString();
-  resultCount[1].innerHTML = lose.toString();
-  resultCount[2].innerHTML = win.toString();
-  resultCount[3].innerHTML = lose.toString();
   switch (true) {
     case gameCount > 0:
       if (wrongGuess === maxWrongGuess) {
@@ -2034,6 +2030,8 @@ function winLoseConditions() {
         }
         gameCount--;
         lose++;
+        resultCount[1].innerHTML = lose.toString();
+        resultCount[3].innerHTML = lose.toString();
         wrongGuess = 0;
         usedLetters = [];
         correctGuess = [];
@@ -2049,6 +2047,8 @@ function winLoseConditions() {
           virtualKeyboard[i].style.color = "#ede2d7";
         }
         win++;
+        resultCount[0].innerHTML = win.toString();
+        resultCount[2].innerHTML = win.toString();
         gameCount--;
         wrongGuess = 0;
         usedLetters = [];
@@ -2061,8 +2061,12 @@ function winLoseConditions() {
     case gameCount === 0:
       if (wrongGuess === maxWrongGuess) {
         lose++;
+        resultCount[1].innerHTML = lose.toString();
+        resultCount[3].innerHTML = lose.toString();
       } else if (correctGuess.length === mWordArray.length) {
         win++;
+        resultCount[0].innerHTML = win.toString();
+        resultCount[2].innerHTML = win.toString();
       }
       wrongGuess = 0;
       usedLetters = [];
