@@ -2102,6 +2102,9 @@ function updatePyramide() {
     case 0:
       for (let i = 0; i < blocks.length; i++) {
         blocks[i].classList.add("hidden");
+        for (let i = 0; i < blocks.length; i++) {
+          image[i].style.opacity = 1;
+        }
       }
       break;
     case 1:
